@@ -5,6 +5,8 @@
 
 # trigger:
 # - main
+### - main    # builds main branch
+### - '*'     # builds all branches
 
 # pool:
 #   vmImage: ubuntu-latest
@@ -17,7 +19,12 @@
 #   displayName: 'dotnet build $(buildConfiguration)'
 
 trigger:
-- '*'
+  branches:
+    include:
+    - '*'     # build all branches
+  paths:
+    exclude:
+    - docs/*  # exclude the docs folder
 
 pool:
   vmImage: 'ubuntu-20.04'
